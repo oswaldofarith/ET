@@ -1,0 +1,27 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# env — NEVER commit secrets
+.env.local
+.env.*.local
+
+# sanity
+.sanity/
+
+# logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# docker
+*.tar
+
+# claude code local config
+.claude/
