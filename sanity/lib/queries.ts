@@ -4,6 +4,7 @@ import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 // ── Image URL builder ─────────────────────────────────────────────────────────
 const builder = client ? imageUrlBuilder(client) : null
+type ImageUrlResult = ReturnType<NonNullable<typeof builder>['image']>
 
 // Chainable stub so HeroSection's urlFor(...).width().height().url() never throws
 // when Sanity is not configured. url() returns '' which is falsy → photo placeholder shows.
@@ -12,8 +13,8 @@ const noopProxy: unknown = new Proxy(noopChain, {
   get: (_t, prop) => prop === 'url' ? () => '' : () => noopProxy,
 })
 
-export function urlFor(source: SanityImageSource) {
-  if (!builder) return noopProxy as ReturnType<typeof builder.image>
+export function urlFor(source: SanityImageSource): ImageUrlResult {
+  if (!builder) return noopProxy as unknown as ImageUrlResult
   return builder.image(source)
 }
 
