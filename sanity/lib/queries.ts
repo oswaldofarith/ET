@@ -3,8 +3,17 @@ import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 // ── Image URL builder ─────────────────────────────────────────────────────────
-const builder = imageUrlBuilder(client)
+const builder = client ? imageUrlBuilder(client) : null
+
+// Chainable stub so HeroSection's urlFor(...).width().height().url() never throws
+// when Sanity is not configured. url() returns '' which is falsy → photo placeholder shows.
+const noopChain: Record<string, unknown> = {}
+const noopProxy: unknown = new Proxy(noopChain, {
+  get: (_t, prop) => prop === 'url' ? () => '' : () => noopProxy,
+})
+
 export function urlFor(source: SanityImageSource) {
+  if (!builder) return noopProxy as ReturnType<typeof builder.image>
   return builder.image(source)
 }
 
@@ -66,18 +75,24 @@ const CERTIFICATIONS_QUERY = `*[_type == "certification"] | order(order asc){
 
 // ── Fetch functions ───────────────────────────────────────────────────────────
 export async function getProfile(): Promise<Profile | null> {
+  if (!client) return null
   return client.fetch(PROFILE_QUERY)
 }
 
 export async function getSpecializations(): Promise<Specialization[]> {
+  if (!client) return []
   return client.fetch(SPECIALIZATIONS_QUERY)
 }
 
 export async function getCertifications(): Promise<Certification[]> {
+  if (!client) return []
   return client.fetch(CERTIFICATIONS_QUERY)
 }
 
 export async function getPageData() {
+  if (!client) {
+    return { profile: null, specializations: [] as Specialization[], certifications: [] as Certification[] }
+  }
   const [profile, specializations, certifications] = await Promise.all([
     getProfile(),
     getSpecializations(),
