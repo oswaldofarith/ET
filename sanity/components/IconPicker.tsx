@@ -6,15 +6,36 @@ import type { LucideProps } from 'lucide-react'
 
 type IconComponent = React.ComponentType<LucideProps>
 
-// Curated set relevant to construcción, mantenimiento, instalaciones y gestión
+// Curated set relevant to construcción, mantenimiento, electricidad, gestión y dirección
 const ICON_OPTIONS = [
-  'Users', 'UsersRound', 'HardHat', 'Building2', 'Building', 'Factory', 'Warehouse',
-  'Wrench', 'Hammer', 'Cog', 'Settings', 'ClipboardCheck', 'ClipboardList', 'ListChecks', 'CheckCircle2',
-  'Zap', 'Plug', 'Lightbulb', 'Battery', 'BatteryCharging', 'Sun',
-  'Droplet', 'Droplets', 'Thermometer', 'Wind',
-  'Shield', 'ShieldCheck', 'ShieldAlert', 'AlertTriangle', 'Camera', 'Wifi', 'Radio',
-  'BarChart2', 'TrendingUp', 'PieChart', 'LineChart', 'CircleDollarSign', 'Wallet', 'Receipt',
-  'Truck', 'Package', 'Boxes', 'Layers', 'Calendar', 'Clock', 'MapPin', 'Star',
+  // Construcción
+  'HardHat', 'Construction', 'Building2', 'Building', 'Factory', 'Warehouse', 'Home',
+  'Hammer', 'Ruler', 'PencilRuler', 'Compass', 'Layers', 'Boxes', 'Package', 'Package2',
+  'Container', 'Truck', 'Forklift', 'Pickaxe', 'Axe', 'Paintbrush', 'PaintBucket', 'Blocks',
+
+  // Mantenimiento
+  'Wrench', 'Settings', 'Settings2', 'Cog', 'Gauge', 'GaugeCircle', 'Thermometer', 'Fan',
+  'Wind', 'Droplet', 'Droplets', 'Waves', 'Filter', 'RotateCw', 'RefreshCw', 'Timer',
+  'Recycle', 'Sparkles', 'SprayCan',
+
+  // Electricidad e instalaciones
+  'Zap', 'ZapOff', 'Plug', 'Plug2', 'PlugZap', 'Lightbulb', 'Battery', 'BatteryCharging',
+  'BatteryFull', 'Power', 'PowerOff', 'Cable', 'CircuitBoard', 'Antenna', 'Radio', 'Wifi',
+  'Signal', 'Sun',
+
+  // Gestión y dirección
+  'Users', 'UsersRound', 'UserCog', 'Briefcase', 'Presentation', 'ClipboardList',
+  'ClipboardCheck', 'ListChecks', 'CheckCircle2', 'Target', 'TrendingUp', 'BarChart2',
+  'BarChart3', 'PieChart', 'LineChart', 'Calendar', 'CalendarCheck', 'Clock', 'FileText',
+  'FileCheck2', 'Handshake', 'Award', 'Medal', 'Trophy', 'Network', 'LayoutDashboard',
+  'Landmark', 'CircleDollarSign', 'Wallet', 'Receipt', 'Coins', 'CreditCard',
+
+  // Seguridad
+  'Shield', 'ShieldCheck', 'ShieldAlert', 'AlertTriangle', 'AlertOctagon', 'Siren',
+  'Camera', 'Eye', 'Lock', 'KeyRound',
+
+  // Otros
+  'MapPin', 'Star',
 ] as const
 
 export function IconPicker(props: StringInputProps) {
