@@ -29,6 +29,7 @@ export interface Profile {
   location?: string
   availability?: string
   email?: string
+  phone?: string
   linkedinUrl?: string
   ctaPrimaryText: string
   ctaSecondaryText: string
@@ -60,7 +61,7 @@ export interface Certification {
 const PROFILE_QUERY = `*[_type == "profile" && _id == "profile"][0]{
   name, heroLabel, tagline, bio, quote,
   photo,
-  location, availability, email, linkedinUrl,
+  location, availability, email, phone, linkedinUrl,
   ctaPrimaryText, ctaSecondaryText,
   specializationSectionLabel, specializationSectionTitle,
   trainingLabel, trainingTitle, trainingDescription

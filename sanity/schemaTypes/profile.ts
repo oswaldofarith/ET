@@ -65,6 +65,12 @@ export const profileSchema = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'phone',
+      title: 'Teléfono de contacto',
+      type: 'string',
+      description: 'Incluye prefijo internacional, ej: +34 600 000 000. Se protege automáticamente contra bots — solo se muestra tras cargar la página en el navegador.',
+    }),
+    defineField({
       name: 'linkedinUrl',
       title: 'URL de LinkedIn',
       type: 'url',

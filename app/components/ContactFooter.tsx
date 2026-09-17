@@ -1,8 +1,14 @@
 import { Mail, Linkedin, MapPin } from 'lucide-react'
 import type { Profile } from '@/sanity/lib/queries'
+import PhoneLink from './PhoneLink'
 
 export default function ContactFooter({ profile }: { profile: Profile }) {
   const year = new Date().getFullYear()
+  // Encoded server-side so the plain number never reaches the client as text —
+  // PhoneLink (client component) decodes it only after mounting in the browser.
+  const encodedPhone = profile.phone
+    ? Buffer.from(profile.phone).toString('base64')
+    : null
 
   return (
     <footer id="contacto" className="bg-navy pt-20 pb-10">
@@ -42,6 +48,7 @@ export default function ContactFooter({ profile }: { profile: Profile }) {
                 {profile.email}
               </a>
             )}
+            {encodedPhone && <PhoneLink encoded={encodedPhone} />}
             {profile.linkedinUrl && (
               <a
                 href={profile.linkedinUrl}
